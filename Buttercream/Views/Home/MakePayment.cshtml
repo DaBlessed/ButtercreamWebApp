@@ -1,0 +1,33 @@
+﻿@model Buttercream.Core.Entities.Payment
+@{
+    ViewData["Title"] = "MakePayment";
+}
+
+<h2>Validate Account</h2>
+<br/>
+
+<form asp-action="MakePayment" asp-controller="Home">
+    @if (!string.IsNullOrWhiteSpace(Model.ErrorMessage))
+    {
+        <label style="color:red; align-items:center"> @Model.ErrorMessage </label>
+    }
+    @*<div class="form-group">
+        <label asp-for="CustomerName" class="control-label">Customer Name</label>
+        <input asp-for="CustomerName" id="CustomerName" class="form-control" readonly value="@Model.CustomerName"/>
+        <span asp-for="CustomerName" class="text-danger"></span>
+    </div>*@
+    <div class="form-group">
+        <label class="control-label">Customer Bank</label>
+        <select asp-for="DestinationBankCode" id="DestinationBankCode" asp-items="@Model.Banks" class="form-control">
+            <option>Please select customer's bank</option>
+        </select>
+        <span asp-for="DestinationBankCode" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="DestinationAccountNo" class="control-label">Customer Account Number</label>
+        <input asp-for="DestinationAccountNo" id="DestinationAccountNo" class="form-control" />
+        <span asp-for="DestinationAccountNo" class="text-danger"></span>
+    </div>
+    @*<input type="submit" />*@
+     <button type="submit"> Verify Account Number </button>
+</form>
